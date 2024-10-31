@@ -11,7 +11,8 @@ import 'package:ticket_app/base/widgets/text_style_third.dart';
 
 class TicketView extends StatefulWidget {
   final Map<String, dynamic> ticket;
-  const TicketView({super.key, required this.ticket});
+  final bool wholeSrceen;
+  const TicketView({super.key, required this.ticket, this.wholeSrceen = false});
 
   @override
   State<TicketView> createState() => _TicketViewState();
@@ -26,7 +27,7 @@ class _TicketViewState extends State<TicketView> {
       width: size.width * 0.85,
       height: 189,
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin: EdgeInsets.only(right: widget.wholeSrceen == true?0:16),
         child: Column(
           children: [
             // blue part of the ticket

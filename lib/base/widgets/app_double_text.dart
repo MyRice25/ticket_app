@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
+import 'package:ticket_app/screens/all_tickets.dart';
 
 class AppDoubleText extends StatefulWidget {
-  const AppDoubleText({Key? key, required this.bigText, required this.smallText}) : super(key : key);
+  const AppDoubleText(
+      {Key? key, required this.bigText, required this.smallText, required this.func})
+      : super(key: key);
   final String bigText;
   final String smallText;
+  final VoidCallback func;
 
   @override
   State<AppDoubleText> createState() => _AppDoubleTextState();
@@ -19,12 +23,10 @@ class _AppDoubleTextState extends State<AppDoubleText> {
       children: [
         Text(widget.bigText, style: AppStyles.headLineStyle3),
         InkWell(
-          onTap: (){
-            print("tapped");
-          },
-          child: Text(widget.smallText,style: AppStyles.textStyle.copyWith(
-            color: AppStyles.primaryColor
-          )),
+          onTap: widget.func,
+          child: Text(widget.smallText,
+              style:
+                  AppStyles.textStyle.copyWith(color: AppStyles.primaryColor)),
         )
       ],
     );
