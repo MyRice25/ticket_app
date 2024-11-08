@@ -1,7 +1,8 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_app/screens/home_srceen.dart';
+import 'package:ticket_app/screens/home/home_srceen.dart';
+import 'package:ticket_app/screens/search/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   // list in iterated using index
   final appSrceens = [
     const HomeSrceen(),
-    const Center(child: Text("Search")),
+    const SearchScreen(),
     const Center(child: Text("Tickets")),
     const Center(child: Text("Profile"))
   ];
