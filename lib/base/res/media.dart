@@ -6,4 +6,5 @@ class AppMedia{
   static const hotel3 = '$_baseImage/hotel_room_view_1.png';
   static const hotel4 = '$_baseImage/hotel_room_view_2.png';
   static const hotel5 = '$_baseImage/hotel_room_view_3.png';
+  static const planeSit = '$_baseImage/plane_sit.jpg';
 }
