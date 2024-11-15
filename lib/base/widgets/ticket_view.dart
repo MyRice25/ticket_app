@@ -12,7 +12,13 @@ import 'package:ticket_app/base/widgets/text_style_third.dart';
 class TicketView extends StatefulWidget {
   final Map<String, dynamic> ticket;
   final bool wholeSrceen;
-  const TicketView({super.key, required this.ticket, this.wholeSrceen = false});
+  final bool? isColor;
+
+  const TicketView(
+      {super.key,
+      required this.ticket,
+      this.wholeSrceen = false,
+      this.isColor});
 
   @override
   State<TicketView> createState() => _TicketViewState();
@@ -27,14 +33,16 @@ class _TicketViewState extends State<TicketView> {
       width: size.width * 0.85,
       height: 189,
       child: Container(
-        margin: EdgeInsets.only(right: widget.wholeSrceen == true?0:16),
+        margin: EdgeInsets.only(right: widget.wholeSrceen == true ? 0 : 16),
         child: Column(
           children: [
             // blue part of the ticket
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: AppStyles.ticketBlue,
+                  color: widget.isColor == null
+                      ? AppStyles.ticketBlue
+                      : AppStyles.ticketColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(21),
                       topRight: Radius.circular(21))),
@@ -43,9 +51,14 @@ class _TicketViewState extends State<TicketView> {
                   // show departure and destination with icons first line
                   Row(
                     children: [
-                      TextStyleThird(text: widget.ticket["from"]["code"],),
+                      TextStyleThird(
+                        text: widget.ticket["from"]["code"],
+                        isColor: widget.isColor,
+                      ),
                       Expanded(child: Container()),
-                      const BigDot(),
+                      BigDot(
+                        isColor: widget.isColor,
+                      ),
                       // ticket flying icon
                       Expanded(
                           child: Stack(
@@ -58,16 +71,21 @@ class _TicketViewState extends State<TicketView> {
                           Center(
                             child: Transform.rotate(
                                 angle: 1.5,
-                                child: const Icon(
+                                child: Icon(
                                   Icons.local_airport_rounded,
-                                  color: Colors.white,
+                                  color: widget.isColor == null
+                                      ? Colors.white
+                                      : AppStyles.planeSecondColor,
                                 )),
                           )
                         ],
                       )),
-                      const BigDot(),
+                      BigDot(isColor: widget.isColor,),
                       Expanded(child: Container()),
-                      TextStyleThird(text: widget.ticket["to"]["code"],),
+                      TextStyleThird(
+                        text: widget.ticket["to"]["code"],
+                        isColor: widget.isColor,
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -76,16 +94,26 @@ class _TicketViewState extends State<TicketView> {
                   // show departure and destination names with time
                   Row(
                     children: [
-                       SizedBox(
+                      SizedBox(
                         width: 100,
-                        child: TextStyleFourth(text: widget.ticket["from"]["name"],),
+                        child: TextStyleFourth(
+                          text: widget.ticket["from"]["name"],
+                          isColor: widget.isColor,
+                        ),
                       ),
                       Expanded(child: Container()),
-                      TextStyleFourth(text: widget.ticket["flying_time"],),
+                      TextStyleFourth(
+                        text: widget.ticket["flying_time"],
+                        isColor: widget.isColor,
+                      ),
                       Expanded(child: Container()),
                       SizedBox(
                         width: 100,
-                        child: TextStyleFourth(text: widget.ticket["to"]["name"], align: TextAlign.end,),
+                        child: TextStyleFourth(
+                          text: widget.ticket["to"]["name"],
+                          align: TextAlign.end,
+                          isColor: widget.isColor,
+                        ),
                       ),
                     ],
                   )
@@ -95,19 +123,22 @@ class _TicketViewState extends State<TicketView> {
             // circles and dots
             Container(
               height: 20,
-              color: AppStyles.ticketRed,
-              child: const Row(
+              color: widget.isColor == null?  AppStyles.ticketRed:AppStyles.ticketColor,
+              child: Row(
                 children: [
                   BigCircle(
                     isRight: false,
+                    isColor: widget.isColor,
                   ),
                   Expanded(
                       child: AppLayoutbuilderWidget(
                     randomDivider: 10,
                     width: 6,
+                        isColor: widget.isColor,
                   )),
                   BigCircle(
                     isRight: true,
+                    isColor: widget.isColor,
                   ),
                 ],
               ),
@@ -116,10 +147,10 @@ class _TicketViewState extends State<TicketView> {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: AppStyles.ticketRed,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(21),
-                      bottomRight: Radius.circular(21))),
+                  color: widget.isColor == null? AppStyles.ticketRed:AppStyles.ticketColor,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(widget.isColor==null? 21:0),
+                      bottomRight: Radius.circular(widget.isColor==null? 21:0))),
               child: Column(
                 children: [
                   // show departure and destination with icons first line
@@ -127,13 +158,22 @@ class _TicketViewState extends State<TicketView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppColumnTextLayout(
-                        topText: widget.ticket["date"], bottomText: "Date", alignment: CrossAxisAlignment.start,
+                        topText: widget.ticket["date"],
+                        bottomText: "Date",
+                        alignment: CrossAxisAlignment.start,
+                        isColor: widget.isColor,
                       ),
                       AppColumnTextLayout(
-                        topText: widget.ticket["departure_time"], bottomText: "Departure time", alignment: CrossAxisAlignment.center,
+                        topText: widget.ticket["departure_time"],
+                        bottomText: "Departure time",
+                        alignment: CrossAxisAlignment.center,
+                        isColor: widget.isColor,
                       ),
                       AppColumnTextLayout(
-                        topText: widget.ticket["number"].toString(), bottomText: "Number", alignment: CrossAxisAlignment.end,
+                        topText: widget.ticket["number"].toString(),
+                        bottomText: "Number",
+                        alignment: CrossAxisAlignment.end,
+                        isColor: widget.isColor,
                       ),
                     ],
                   ),

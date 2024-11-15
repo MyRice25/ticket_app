@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/screens/home/home_srceen.dart';
 import 'package:ticket_app/screens/search/search_screen.dart';
+import 'package:ticket_app/screens/ticket/ticket_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final appSrceens = [
     const HomeSrceen(),
     const SearchScreen(),
-    const Center(child: Text("Tickets")),
+    const TicketScreen(),
     const Center(child: Text("Profile"))
   ];
 
