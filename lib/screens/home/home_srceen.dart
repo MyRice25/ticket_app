@@ -1,6 +1,7 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_app/base/res/app_routes.dart';
 import 'package:ticket_app/base/res/media.dart';
 import 'package:ticket_app/base/widgets/app_double_text.dart';
 import 'package:ticket_app/base/widgets/ticket_view.dart';
@@ -72,31 +73,52 @@ class _HomeSrceenState extends State<HomeSrceen> {
                 AppDoubleText(
                   bigText: 'Upcoming Flight',
                   smallText: 'View all',
-                  func: () => Navigator.pushNamed(context,"/all_tickets"),
+                  func: () =>
+                      Navigator.pushNamed(context, AppRoutes.allTickets),
                 ),
                 const SizedBox(height: 20),
                 SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: ticketList
-                          .map((singleTicket) => TicketView(ticket: singleTicket,))
+                          .map((singleTicket) => GestureDetector(
+                        onTap: (){
+                          var index = ticketList.indexOf(singleTicket);
+                          Navigator.pushNamed(context, AppRoutes.ticketScreen,
+                          arguments: {"index": index});
+                        },
+                                child: TicketView(
+                                  ticket: singleTicket,
+                                ),
+                              ))
                           .toList(),
                     )),
                 const SizedBox(height: 20),
                 AppDoubleText(
                   bigText: 'Hotels',
                   smallText: 'View all',
-                  func: (){
-                    print("hello");
+                  func: () {
+                    Navigator.pushNamed(context, AppRoutes.allHotels);
                   },
                 ),
                 const SizedBox(height: 20),
                 SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       children: hotelList
-                      .take(3)
-                          .map((singleHotel) => Hotel(hotel: singleHotel,))
+                          .take(3)
+                          .map((singleHotel) => GestureDetector(
+                        onTap: (){
+                          var index = hotelList.indexOf(singleHotel);
+
+                          Navigator.pushNamed(context, AppRoutes.hotelDetail, arguments: {
+                            "index" : index
+                          });
+                        },
+                            child: Hotel(
+                                  hotel: singleHotel,
+                                ),
+                          ))
                           .toList(),
                     ))
               ],
