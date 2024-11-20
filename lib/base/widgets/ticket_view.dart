@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
-import 'package:ticket_app/base/utils/all_json.dart';
 import 'package:ticket_app/base/widgets/app_column_text_layout.dart';
 import 'package:ticket_app/base/widgets/app_layoutbuilder_widget.dart';
 import 'package:ticket_app/base/widgets/big_circle.dart';
@@ -38,7 +37,7 @@ class _TicketViewState extends State<TicketView> {
           children: [
             // blue part of the ticket
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(13),
               decoration: BoxDecoration(
                   color: widget.isColor == null
                       ? AppStyles.ticketBlue
@@ -145,7 +144,7 @@ class _TicketViewState extends State<TicketView> {
             ),
             // red part of the ticket
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(14),
               decoration: BoxDecoration(
                   color: widget.isColor == null? AppStyles.ticketRed:AppStyles.ticketColor,
                   borderRadius: BorderRadius.only(
