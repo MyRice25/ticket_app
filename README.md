@@ -1,7 +1,6 @@
 # ticket_app
 
-![ticket_app Logo](images/logo.png) <!-- Replace with your logo image if available -->
-
+![ticket_app Logo](https://github.com/MyRice25/ticket_app/blob/main/screenshot_1748949706.png?raw=true))
 ---
 
 ## 📱 Introduction
